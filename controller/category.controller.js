@@ -1,7 +1,7 @@
 const category_Model = require("../model/catagory.model.js");
 const slugify = require("slugify");
 const asyncHandler = require("express-async-handler");
-const { errorHandler } = require("../utils/errorHandler.js");
+const { errorHandler } = require("../utils/ErrorHandler.js");
 
 exports.createCategory = asyncHandler(async (req, res) => {
   let { name } = req.body;
@@ -73,7 +73,7 @@ exports.findOneCategory = asyncHandler(async (req, res, next) => {
 
 exports.deleteCategory = asyncHandler(async (req, res, next) => {
     let {id} = req.params;
-    await category_Model.findByIdAndDelete(id);
+    await category_Model.findByIdAndDelete({_id:id});
     res.status(201).json({success:true , message : "category deleted successfully"});
 
 });

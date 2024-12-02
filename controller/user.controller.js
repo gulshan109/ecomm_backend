@@ -1,6 +1,6 @@
 const asyncHandler = require("express-async-handler");
 const USER_SCHEMA = require("../model/user.model");
-const ErrorHandler = require("../utils/errorHandler");
+const ErrorHandler = require("../utils/ErrorHandler");
 const { JWT_SECRET } = require("../config");
 const {JWT}  = require("jsonwebtoken");
 const { generateToken } = require("../utils/jwt");
@@ -39,7 +39,8 @@ exports.loginUser = asyncHandler(async(req,res,next)=>{
 
     // validation
     if(!email || !password){
-        return next(new ErrorHandler("please enter email and password",401));
+        // return next(new ErrorHandler("please enter email and password",401));
+        return res.status(400).json({success : false , message : "please enter email and password"});
     };
     // check user
 

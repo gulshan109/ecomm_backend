@@ -5,7 +5,7 @@ const formidable = require("express-formidable");
 const { createProductController, getAllProducts, getOneProduct, getPhoto, deleteProduct, updateProduct } = require("../controller/products.controller");
 const router = Router();
 
-router.post("/createProduct" , authenticate, authorize ,formidable() ,createProductController);
+router.post("/createProduct/:cookie" , authenticate, authorize ,formidable() ,createProductController);
 
 // update product router
 router.put("/updateProduct/:id" , authenticate, authorize ,formidable() ,updateProduct);

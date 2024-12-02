@@ -14,13 +14,13 @@ router.get("/user-auth" , authenticate,(req,res)=>{
 });
 
 // protected admin route auth
-router.get("/admin-auth" , authenticate , authorize ,(req,res)=>{
+router.get("/admin-auth/:cookie" , authenticate , authorize ,(req,res)=>{
     res.status(200).send({ok : true});
 })
 
 router.patch("/updateProfile" ,authenticate, updateUserprofile);
 router.patch("/update-password" ,authenticate, updateUserPassword);
 
-router.get("/isLogged", authenticate, isLoggedIn);
+router.get("/isLogged/:cookie", authenticate, isLoggedIn);
 
 module.exports = router;

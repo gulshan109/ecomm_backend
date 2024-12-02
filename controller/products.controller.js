@@ -14,6 +14,7 @@ exports.createProductController = asyncHandler(async (req, res, next) => {
        success: false, message: "photo size less then 1mb" 
       });
   }
+  
 
   const products = new product_Schema({ ...req.fields, slug: slugify(name) });
   if (photo) {

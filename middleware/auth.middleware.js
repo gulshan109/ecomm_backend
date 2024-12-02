@@ -3,14 +3,15 @@ const { JWT_SECRET } = require("../config");
 const USER_SCHEMA = require("../model/user.model");
 
 
-
 exports.authenticate = async(req,res,next)=>{
-    console.log(req.cookies);
-    let cookie = req?.cookies?.cookie;
+    // console.log(req.cookies);
+    let {cookie} = req.params;
+    // let cookiea = req?.cookies?.cookie;
+    // console.log(cookie);
     if(!cookie){
+        // log("cookie not found");
         return res.status(400).json({ message : "please login to access the user data"})
     };
-
     const decodeToken = Jwt.verify(cookie, JWT_SECRET);
     let myUser = await USER_SCHEMA.findOne({_id : decodeToken.id});
     req.foundUser = myUser;
